@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<project name="ScanCARE.Activity" default="all">
+
+
+  <target name="create.config">
+    <copy file="config\local.properties.template.xml" tofile="config\local.properties.xml" overwrite="false" />
+  </target>
+
+  <target name="exec.sql.template">
+    <copy file="sql\${target}.template.sql" tofile="build\sql\${target}.sql" overwrite="true">
+      <filterchain>
+        <replacetokens>
+          <token key="INITIAL_CATALOG" value="${initial.catalog}" />
+          <!--<token key="ASPNETACCOUNT" value="${aspnet.account}" />-->
+          <token key="OSQL_CONNECTION_STRING" value="${osql.ConnectionString}" />
+          <token key="CONFIG_CONNECTION_STRING" value="${config.ConnectionString}" />
+          <token key="DBPATH" value="${database.path}"/>
+        </replacetokens>
+      </filterchain>
+    </copy>
+    <exec program="${osql.exe}" commandline="${osql.ConnectionString} -n -b -i build\sql\${target}.sql" />
+  </target>
+
+  <target name="clean" description="remove all build products">
+    <delete dir="build"  if="${directory::exists('build')}" />
+  </target>
+
+  <target name="init" >
+    <mkdir dir="build" />
+    <mkdir dir="build\sql" />
+    <mkdir dir="build\coverage" />
+    <mkdir dir="build\documentation" />
+  </target>
+  
+</project>

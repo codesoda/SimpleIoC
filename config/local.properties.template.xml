@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<properties>
+  <property name="sqlToolsFolder" value="C:\Program Files\Microsoft SQL Server\90\Tools\Binn"/>
+  <property name="osql.ConnectionString" value="-E"/>
+  <property name="initial.catalog" value="ScanCARE.Activity"/>
+  <property name="config.ConnectionString" value="data source=(local);Integrated Security=SSPI;Initial Catalog=${initial.catalog}"/>
+  <property name="database.path" value="C:\Program Files\Microsoft SQL Server\MSSQL.1\MSSQL\Data\" />
+  <property name="osql.exe"  value="${sqlToolsFolder}\osql.exe" />
+</properties>

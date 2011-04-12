@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<project name="CodeSoda.IoC" default="all">
+
+	<include buildfile="utility.build" />
+
+	<property name="debug" value="false" />
+	<property name="env.COMPUTERNAME" value="${environment::get-variable('COMPUTERNAME')}" />
+	<property name="framework.version" value="v2.0.50727" />
+
+	<if test="${file::exists('config\local.properties.xml')}">
+		<echo message="Loading local.properties.xml" />
+		<include buildfile="config\local.properties.xml" />
+	</if>
+
+	<target name="compile" depends="init">
+		<csc target="library" output="build\${project::get-name()}.dll" debug="${debug}" >
+			<sources>
+				<include name="src\app\CodeSoda.Ioc\**\*.cs" />
+				<include name="src\app\**\*.cs" />
+			</sources>
+		</csc>
+	</target>
+
+</project>

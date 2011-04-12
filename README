@@ -1,0 +1,1 @@
+A simple IoC Container in C#. Most useful when embedded into libraries to ensure testability.
